@@ -7,27 +7,27 @@ function Login(props) {
 
         const [password, setPassword] = useState("")
     function onSubmit() {
-        props.navigation.navigate('Register')
+
         props.navigation.navigate('HomeMenu')
         console.log();
     }
 
         return (
-            <View style={styles.container}>
-                <Text style={styles.title}>Login</Text>
-                <TextInput style={styles.field}
+            <View >
+                <Text >Login</Text>
+                <TextInput 
                     keyboardType='email-address'
                     placeholder='email'
                     onChangeText={text => setEmail(text)}
                     value={email} />
-                <TextInput style={styles.field}
+                <TextInput 
                     keyboardType='default'
                     placeholder='password'
                     secureTextEntry={true}
                     onChangeText={text => setPassword(text)}
                     value={password} />
 
-                <Pressable style={styles.boton}
+                <Pressable 
                     onPress={() => onSubmit()}>
                     <Text>Login</Text>
                 </Pressable>
