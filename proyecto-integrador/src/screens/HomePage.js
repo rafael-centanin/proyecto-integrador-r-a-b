@@ -1,14 +1,17 @@
 import { View, Text, Pressable, StyleSheet, Image, FlatList, ActivityIndicator } from 'react-native';
-function HomeMenu(){
+function HomePage(){
 
     return(
         <View>
+
             <Text style= {styles.h1}>Home</Text>
+
         </View>
+        
     )
 }
 
-export default HomeMenu
+export default HomePage;
 const styles = StyleSheet.create({
     h1: {
         fontSize: 32,

@@ -17,7 +17,7 @@ function Login(props) {
         auth.signInWithEmailAndPassword(Email, Password)
             .then(response => {
                 console.log(Email, Password, response)
-                props.navigation.navigate('HomeMenu', { screen: 'HomeMenu' })
+                props.navigation.navigate('HomeMenu', { screen: 'HomePage' })
             }
             )
             .catch(error => {
@@ -53,7 +53,7 @@ function Login(props) {
                 <Text style={styles.BotonText}>Ingresar</Text>
             </Pressable>
             <Pressable onPress={() => props.navigation.navigate('Register', { screen: 'Register' })}>
-                <Text> Crear una cuenta</Text>
+                <Text> No tengo cuenta</Text>
             </Pressable>
         </View>
     )
