@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { auth } from '../firebase/config'
 import { View, Text, Pressable, StyleSheet, Image, FlatList, ActivityIndicator, TextInput } from 'react-native';
 
@@ -8,6 +8,14 @@ function Register(props) {
     const [Password, setPassword] = useState("")
     const [RegisterError, setRegisterError] = useState()
 
+
+    useEffect(() => {
+        auth.onAuthStateChanged(user => {
+            if (user) {
+                props.navigation.navigate("HomeMenu")
+            }
+        })
+    }, [])
 
 
     function onSubmit() {
