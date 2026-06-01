@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from '../firebase/config'
+import { db } from '../firebase/config'
 import { View, Text, Pressable, StyleSheet, Image, FlatList, ActivityIndicator, TextInput } from 'react-native';
 
 function Register(props) {
@@ -8,7 +9,6 @@ function Register(props) {
     const [Password, setPassword] = useState("")
     const [RegisterError, setRegisterError] = useState()
 
-
     useEffect(() => {
         auth.onAuthStateChanged(user => {
             if (user) {
@@ -16,28 +16,30 @@ function Register(props) {
             }
         })
     }, [])
-
-
     function onSubmit() {
         setRegisterError("")
-        if (!userName){
+        if (!userName) {
             setRegisterError("Complete los datos correctamente")
             return
         }
         auth.createUserWithEmailAndPassword(Email, Password)
             .then(response => {
-                console.log(Email, Password, response)
+                db.collection('users').add({
+                    owner: Email,
+                    User: userName,
+                    createdAt: Date.now(),
+                })
+
+            })
+            .then(() => {
                 props.navigation.navigate('Login', { screen: 'Login' })
-            }
-            )
+
+            })
             .catch(error => {
                 console.log(error)
                 setRegisterError("Error: " + error.code)
             })
-        console.log(Email, userName, Password)
     }
-
-
     return (
         <View style={styles.container}>
             <Text style={styles.h1}>Registro</Text>
@@ -54,15 +56,13 @@ function Register(props) {
                 <Text style={styles.BotonText}>Registrarse</Text>
             </Pressable>
             <Text style={styles.h1}>{RegisterError}</Text>
-            <Text  style={styles.h1}>Ya tenes tu cuenta</Text>
-            <Pressable  onPress={() => props.navigation.navigate('Login', { screen: 'Login' })}>
+            <Text style={styles.h1}>Ya tenes tu cuenta</Text>
+            <Pressable onPress={() => props.navigation.navigate('Login', { screen: 'Login' })}>
                 <Text style={styles.irAlLogin}> Ya tengo cuenta</Text>
             </Pressable>
-            
         </View>
     )
 }
-
 export default Register
 const styles = StyleSheet.create({
     h1: {
