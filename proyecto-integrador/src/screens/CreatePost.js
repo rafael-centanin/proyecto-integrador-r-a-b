@@ -1,6 +1,7 @@
-import { View, Text } from "react-native-web";
+import { View, Text, TextInput } from "react-native-web";
 import { db, auth } from "../firebase/config"
 import { useState } from "react";
+import { Pressable } from "react-native";
 
 function CreatePost() {
 
@@ -21,6 +22,10 @@ function CreatePost() {
     return (
         <View>
             <Text> Crear post</Text>
+            <TextInput placeholder="Escribí tu post" value={descripcion} onChangeText={(text)=> setDescripcion(text)}/>
+            <Pressable onPress={onSubmit}>
+                <Text>Publicar</Text>
+            </Pressable>
         </View>
     )
 }
