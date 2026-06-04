@@ -12,19 +12,19 @@ function Profile(props) {
   }
 
   useEffect(() => {
-    auth.onAuthStateChanged(user => {
-      if (user == "") {
+    auth.onAuthStateChanged(userauth => {
+      if (!userauth) {
         return;
       }
       db.collection('users').where('owner', '==', auth.currentUser.email).onSnapshot(docs => {
-        let user = [];
+        let userData = [];
         docs.forEach(doc => {
-          user.push({
+          userData.push({
             id: doc.id,
             data: doc.data()
           });
         });
-        setUser(user);
+        setUser(userData);
     console.log(user)
 
         setLoading(false);
@@ -51,7 +51,7 @@ function Profile(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Profile</Text>
-      {loading === true ? <Text>cargando...</Text> : <Text> {user[0].data.User}</Text>}
+      {loading === true ? <Text>cargando...</Text> : user && user.length > 0 ? <Text>{user[0].data.User}</Text> : <Text>Sin datos</Text>}
       <Pressable style={styles.Boton} onPress={() => Logout()}>
         <Text style={styles.texto}>Desloguearse</Text>
       </Pressable>
