@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Pressable, StyleSheet, Image, FlatList, ActivityIndicator } from 'react-native';
 import { useEffect, useState } from 'react';
-import { db } from '../firebase/config';
+import { db,auth } from '../firebase/config';
 import Post from '../Components/Post';
 
 function HomePage() {
@@ -22,14 +22,14 @@ function HomePage() {
         })
 
     }, [])
-
+    console.log(auth.currentUser.email)
 
     return (
         <View style={styles.flatlist}> 
 
             <Text style={styles.h1}>Home</Text>
             <FlatList data={posts}
-            keyExtractor={(item)=> item.id.toString()} renderItem={({item})=>  <Post post={item}  />}/>
+            keyExtractor={(item)=> item.id.toString()} renderItem={({item})=>  <Post post={item}> </Post>}/>
 
         </View>
 

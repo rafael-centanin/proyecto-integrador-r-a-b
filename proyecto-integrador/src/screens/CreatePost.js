@@ -17,8 +17,8 @@ function CreatePost() {
         })
             .then()
             .catch(e => console.log(e))
-
     }
+    
 
     return (
         <View style={styles.container}>
@@ -27,6 +27,7 @@ function CreatePost() {
             <Pressable style={styles.Boton} onPress={onSubmit}>
                 <Text style={styles.BotonText}>Publicar Post</Text>
             </Pressable>
+            
         </View>
     )
 }
