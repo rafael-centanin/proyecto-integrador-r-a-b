@@ -1,13 +1,37 @@
 import { View, Text, Pressable, StyleSheet, Image, FlatList, ActivityIndicator } from 'react-native';
-function HomePage(){
+import { useEffect, useState } from 'react';
+import { db } from '../firebase/config';
+import Post from '../Components/Post';
 
-    return(
-        <View>
+function HomePage() {
+    const [posts, setPosteos] = useState([]);
 
-            <Text style= {styles.h1}>Home</Text>
+    useEffect(() => {
+        db.collection("posts").orderBy("createdAt", "desc").onSnapshot(docs => {
+            let posts = [];
+
+            docs.forEach(doc => {
+                posts.push({
+                    id: doc.id,
+                    data: doc.data()
+                })
+
+            })
+            setPosteos(posts)
+        })
+
+    }, [])
+
+
+    return (
+        <View style={styles.flatlist}> 
+
+            <Text style={styles.h1}>Home</Text>
+            <FlatList data={posts}
+            keyExtractor={(item)=> item.id.toString()} renderItem={({item})=>   <Post post={item} />}/>
 
         </View>
-        
+
     )
 }
 
@@ -18,4 +42,9 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#000000',
         marginVertical: 10,
-    },})
+    },
+    flatlist:{
+        width: "100%",
+        flex: 1
+    }
+})
