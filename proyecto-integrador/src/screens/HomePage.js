@@ -1,3 +1,4 @@
+import React from 'react';
 import { View, Text, Pressable, StyleSheet, Image, FlatList, ActivityIndicator } from 'react-native';
 import { useEffect, useState } from 'react';
 import { db } from '../firebase/config';
@@ -28,7 +29,7 @@ function HomePage() {
 
             <Text style={styles.h1}>Home</Text>
             <FlatList data={posts}
-            keyExtractor={(item)=> item.id.toString()} renderItem={({item})=>   <Post post={item} />}/>
+            keyExtractor={(item)=> item.id.toString()} renderItem={({item})=>  <Post post={item} />}/>
 
         </View>
 
