@@ -5,6 +5,7 @@ import { View, Text } from 'react-native';
 import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import { useState, useEffect } from "react";
+import Comments from '../screens/Comments';
 function Post(props) {
     const [Likes, setLikes] = useState(props.post.data.likes || [])
     const UsuarioLike = Likes.includes(auth.currentUser.email)
@@ -32,6 +33,9 @@ function Post(props) {
                 setLikes(Likes.filter(MailUsers => MailUsers !== emailUsuarioYa))
             })
     }
+    function irCommets() {
+            navigation.navigate('Comments');
+    }
 
     return (
         <View style={styles.postContainer}>
@@ -45,7 +49,7 @@ function Post(props) {
                     <Text style={styles.BotonText}>Quitar like</Text>
                     </Pressable>
             }
-            <Pressable>
+            <Pressable onPress={()=> irCommets()}>
                 <Text>Comentar</Text>
             </Pressable>
         </View>
