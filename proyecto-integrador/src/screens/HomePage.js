@@ -29,7 +29,7 @@ function HomePage() {
 
             <Text style={styles.h1}>Home</Text>
             <FlatList data={posts}
-            keyExtractor={(item)=> item.id.toString()} renderItem={({item})=>  <Post post={item} />}/>
+            keyExtractor={(item)=> item.id.toString()} renderItem={({item})=>  <Post post={item}  />}/>
 
         </View>
 

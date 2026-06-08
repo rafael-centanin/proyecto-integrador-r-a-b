@@ -10,6 +10,9 @@ function Post(props) {
             {/* <Pressable onPress={darLike}>
                 <Text>Like</Text>
             </Pressable> */}
+            <Pressable>
+                <Text>Comentar</Text>
+            </Pressable>
         </View>
     )
 }
