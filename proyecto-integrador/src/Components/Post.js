@@ -6,6 +6,8 @@ import { db, auth } from '../firebase/config';
 import firebase from 'firebase';
 import { useState, useEffect } from "react";
 import Comments from '../screens/Comments';
+import HomePage from '../screens/HomePage';
+
 function Post(props) {
     const [Likes, setLikes] = useState(props.post.data.likes || [])
     const UsuarioLike = Likes.includes(auth.currentUser.email)
@@ -33,9 +35,9 @@ function Post(props) {
                 setLikes(Likes.filter(MailUsers => MailUsers !== emailUsuarioYa))
             })
     }
-    function irCommets() {
-            navigation.navigate('Comments');
-    }
+    // function irCommets(props) {
+    //         props.navigation.navigate('Comments');
+    // }
 
     return (
         <View style={styles.postContainer}>
@@ -49,7 +51,7 @@ function Post(props) {
                     <Text style={styles.BotonText}>Quitar like</Text>
                     </Pressable>
             }
-            <Pressable onPress={()=> irCommets()}>
+            <Pressable onPress={()=> props.navigation.navigate('Comments', { id: props.post.id })}>
                 <Text>Comentar</Text>
             </Pressable>
         </View>

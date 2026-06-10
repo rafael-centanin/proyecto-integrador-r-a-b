@@ -14,8 +14,8 @@ export default function App() {
       <Stack.Navigator screenOptions={{ headerShown: false }}>
         <Stack.Screen name="Register" component={Register} />
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Comments" component={Comments}  />
-        <Stack.Screen name="HomeMenu" component={HomeMenu}  />
+        <Stack.Screen name="HomeMenu" component={HomeMenu} />
+        <Stack.Screen name="Comments" component={Comments} />
 
       </Stack.Navigator>
     </NavigationContainer>

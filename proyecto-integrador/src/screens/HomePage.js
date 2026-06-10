@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { db,auth } from '../firebase/config';
 import Post from '../Components/Post';
 
-function HomePage() {
+function HomePage(props) {
     const [posts, setPosteos] = useState([]);
 
     useEffect(() => {
@@ -29,7 +29,7 @@ function HomePage() {
 
             <Text style={styles.h1}>Home</Text>
             <FlatList data={posts}
-            keyExtractor={(item)=> item.id.toString()} renderItem={({item})=>  <Post post={item}> </Post>}/>
+            keyExtractor={(item)=> item.id.toString()} renderItem={({item})=>  <Post post={item} navigation={props.navigation} > </Post>}/>
 
         </View>
 
