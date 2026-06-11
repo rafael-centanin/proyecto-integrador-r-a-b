@@ -2,54 +2,50 @@ import firebase from 'firebase';
 import React from 'react';
 import { View, Text, Pressable, StyleSheet, Image, FlatList, ActivityIndicator, TextInput } from 'react-native';
 import { useEffect, useState } from 'react';
-import { db,auth } from '../firebase/config';
+import { db, auth } from '../firebase/config';
 import HomePage from './HomePage';
 import Post from '../Components/Post';
-function Comments(props){ 
+function Comments(props) {
     const postId = props.route.params.id
-    const[coment, setComent]= useState()
+    const [coment, setComent] = useState()
     const [ArrayComentario, setArrayComentario] = useState([])
 
     useEffect(() => {
-        db.collection('posts').onSnapshot(
-            docs => {
-                let postComment =[]
-                docs.forEach(doc=> {
-                    postComment.push({
-                        id: doc.id,
-                        data: doc.data(),
-                    })
-                })
-                setArrayComentario(postComment)
+        db.collection('posts').doc(postId).onSnapshot(doc => {
+            console.log(doc.data().comentario)
+            const comentarios = doc.data().comentario
+            if (comentarios) {
+                setArrayComentario(comentarios)
             }
-        )
-        
-    },[])
-    
+        })
+    }, [])
+
     function actualizarDatos() {
         db.collection('posts')
-        .doc(postId)
-        .update({
-            comentario: firebase.firestore.FieldValue.arrayUnion(coment)
-        })
-        .then(()=> {
-            
-        })
-        .catch(error => {
+            .doc(postId)
+            .update({
+                comentario: firebase.firestore.FieldValue.arrayUnion(coment)
+            })
+            .then(() => {
+
+            })
+            .catch(error => {
                 console.log(error)
-        })
+            })
     }
 
-    return(
+    return (
         <View style={styles.container}>
             <Text style={styles.h1}> Crear nuevo post</Text>
             <TextInput style={styles.Input} placeholder="Comenta!" value={coment} onChangeText={(text) => setComent(text)} />
-            <Pressable style={styles.Boton} onPress={()=>actualizarDatos()}>
+            <Pressable style={styles.Boton} onPress={() => actualizarDatos()}>
                 <Text style={styles.BotonText}>Publicar Post</Text>
             </Pressable>
-            <FlatList data={ArrayComentario}
-            keyExtractor={(item)=> item.id.toString()} renderItem={({item})=>  <Post post={item} navigation={props.navigation} > </Post>}/>
-            
+            <FlatList
+                data={ArrayComentario}
+                keyExtractor={item => item}
+                renderItem={({ item }) => <Text>{item}</Text>}
+            />
         </View>
     )
 }
@@ -65,7 +61,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        marginTop:40
+        marginTop: 40
     },
     Input: {
         height: 20,
@@ -83,7 +79,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         borderWidth: 1,
         borderStyle: "solid",
-        borderColor:"#28a3a7",
+        borderColor: "#28a3a7",
     },
     BotonText: {
         color: "#fff",
