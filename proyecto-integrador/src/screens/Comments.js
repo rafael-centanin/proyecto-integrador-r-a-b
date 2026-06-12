@@ -7,18 +7,18 @@ import HomePage from './HomePage';
 import Post from '../Components/Post';
 function Comments(props) {
     const postId = props.route.params.id
-    const [coment, setComent] = useState()
+    const [coment, setComent] = useState("")
     const [ArrayComentario, setArrayComentario] = useState([])
 
     useEffect(() => {
-        db.collection('posts').doc(postId).onSnapshot(doc => {
-            console.log(doc.data().comentario)
+        const comentario = db.collection('posts').doc(postId).onSnapshot(doc => {
             const comentarios = doc.data().comentario
             if (comentarios) {
                 setArrayComentario(comentarios)
             }
         })
-    }, [])
+        return comentario
+    }, [postId]) //Antes se nos rompia lol, aca cambia el comentario cuando se entre a otro
 
     function actualizarDatos() {
         db.collection('posts')
@@ -27,7 +27,7 @@ function Comments(props) {
                 comentario: firebase.firestore.FieldValue.arrayUnion(coment)
             })
             .then(() => {
-
+                setComent("")
             })
             .catch(error => {
                 console.log(error)

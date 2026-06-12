@@ -61,7 +61,7 @@ function Profile(props) {
         <Pressable style={styles.Boton} onPress={() => Logout()}>
           <Text style={styles.texto}>Desloguearse</Text>
         </Pressable>
-        <FlatList data={posts} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post post={item}> </Post>} /></> : <Text>Sin datos</Text>}
+        <FlatList data={posts} keyExtractor={(item) => item.id.toString()} renderItem={({ item }) => <Post post={item} navigation={props.navigation}> </Post>} /></> : <Text>Sin datos</Text>}
 
     </View>
   );
