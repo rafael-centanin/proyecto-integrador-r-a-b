@@ -36,10 +36,10 @@ function Comments(props) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.h1}> Crear nuevo post</Text>
+            <Text style={styles.h1}> Comentarios</Text>
             <TextInput style={styles.Input} placeholder="Comenta!" value={coment} onChangeText={(text) => setComent(text)} />
             <Pressable style={styles.Boton} onPress={() => actualizarDatos()}>
-                <Text style={styles.BotonText}>Publicar Post</Text>
+                <Text style={styles.BotonText}>Comentar</Text>
             </Pressable>
             <FlatList
                 data={ArrayComentario}

@@ -30,13 +30,13 @@ function Login(props) {
     return (
         <View style={styles.container} >
             <Text style={styles.h1}>Login</Text>
-            <Text>Email</Text>
+            <Text style={styles.Texto}>Email</Text>
             <TextInput style={styles.Input}
                 keyboardType='email-address'
                 placeholder='email'
                 onChangeText={text => setEmail(text)}
                 value={Email} />
-            <Text>Password</Text>
+            <Text style={styles.Texto} >Password</Text>
             <TextInput style={styles.Input}
                 keyboardType='default'
                 placeholder='password'
@@ -44,7 +44,7 @@ function Login(props) {
                 onChangeText={text => setPassword(text)}
                 value={Password} />
             {LoginError ? (
-                <Text style={{ color: 'red' }}>
+                <Text style={styles.TextoError}>
                     {LoginError}
                 </Text>
             ) : null}
@@ -53,7 +53,7 @@ function Login(props) {
                 <Text style={styles.BotonText}>Ingresar</Text>
             </Pressable>
             <Pressable onPress={() => props.navigation.navigate('Register', { screen: 'Register' })}>
-                <Text> No tengo cuenta</Text>
+                <Text style={styles.Texto}> No tengo cuenta</Text>
             </Pressable>
         </View>
     )
@@ -62,36 +62,60 @@ export default Login;
 
 const styles = StyleSheet.create({
     h1: {
-        fontSize: 32,
+        textAlign: "center",
+        fontFamily: 'Courier',
+        fontSize: 50,
         fontWeight: 'bold',
-        color: '#000000',
+        color: '#64090E',
         marginVertical: 10,
     },
     container: {
-        marginTop: 20,
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
+        backgroundColor: "#F9D694",
+        width: "100%",
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: "center"
+
     },
     Input: {
         height: 20,
         paddingVertical: 15,
         paddingHorizontal: 10,
         borderWidth: 1,
-        borderColor: "#ccc",
+        borderColor: "#64090E",
         borderStyle: "solid",
         borderRadius: 6,
         marginVertical: 10,
+        color:"#64090E",
+          width: 230,
     },
     Boton: {
-        backgroundColor: "#28a745",
+        backgroundColor: "#64090E",
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: "center",
         borderRadius: 4,
-        borderWidth: 1,
         borderStyle: "solid",
-        borderColor: "#28a745",
+        marginTop: 14
     },
     BotonText: {
-        color: "#fff"
-    }
+        fontSize: 18,
+        color: "#F9D694",
+        fontFamily: 'Georgia',
+    },
+    Texto: {
+        fontSize: 18,
+        color: "#64090E",
+        fontFamily: 'Georgia',
+
+    },
+       TextoError:{
+          fontSize: 18,
+        color: "#64090E",
+        fontFamily: 'Georgia',
+        marginTop: 10,
+
+    },
+
 },)

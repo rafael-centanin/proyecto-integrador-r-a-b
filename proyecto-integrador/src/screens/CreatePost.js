@@ -13,7 +13,8 @@ function CreatePost() {
             owner: auth.currentUser.email,
             descripcionPost: descripcion,
             createdAt: Date.now(),
-            likes: []
+            likes: [],
+            comentario:[]
         })
             .then(() => {
                 setMensaje("Publicado!")

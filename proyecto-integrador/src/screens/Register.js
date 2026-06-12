@@ -43,22 +43,22 @@ function Register(props) {
     return (
         <View style={styles.container}>
             <Text style={styles.h1}>Registro</Text>
-            <Text>Email</Text>
+            <Text style={styles.Texto}>Email</Text>
             <TextInput style={styles.Input} keyboardType='email-address' placeholder='email' onChangeText={text => setEmail(text)}
                 value={Email} />
-            <Text>UserName</Text>
+            <Text style={styles.Texto}>Username</Text>
             <TextInput style={styles.Input} keyboardType='default' placeholder='UserName' onChangeText={text => setUserName(text)}
                 value={userName} />
-            <Text>Password</Text>
+            <Text style={styles.Texto}>Password</Text>
             <TextInput style={styles.Input} secureTextEntry={true} keyboardType='default' placeholder='Password' onChangeText={text => setPassword(text)}
                 value={Password} />
             <Pressable style={styles.Boton} onPress={() => onSubmit()}>
                 <Text style={styles.BotonText}>Registrarse</Text>
             </Pressable>
-            <Text style={styles.h1}>{RegisterError}</Text>
-            <Text style={styles.h1}>Ya tenes tu cuenta</Text>
-            <Pressable onPress={() => props.navigation.navigate('Login', { screen: 'Login' })}>
-                <Text style={styles.irAlLogin}> Ya tengo cuenta</Text>
+            <Text style={styles.TextoError}>{RegisterError}</Text>
+            <Text style={styles.h2}>¿Ya tenes tu cuenta?</Text>
+            <Pressable style={styles.irAlLogin} onPress={() => props.navigation.navigate('Login', { screen: 'Login' })}>
+                <Text style={styles.BotonText} > Iniciar sesión </Text>
             </Pressable>
         </View>
     )
@@ -66,42 +66,78 @@ function Register(props) {
 export default Register
 const styles = StyleSheet.create({
     h1: {
-        fontSize: 32,
+        textAlign: "center",
+        fontFamily: 'Courier',
+        fontSize: 48,
         fontWeight: 'bold',
-        color: '#000000',
+        color: '#e5a342',
         marginVertical: 10,
+    },
+    h2: {
+        textAlign: "center",
+        fontFamily: 'Courier',
+        fontSize: 20,
+        fontWeight: 'bold',
+        color: '#e5a342',
+        marginVertical: 10,
+
     },
     container: {
-        marginTop: 20,
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
+        // backgroundColor: "#F9D694",
+        backgroundColor: "#64090E",
+        width: "100%",
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: "center"
     },
     irAlLogin: {
-        backgroundColor: "#51B9E9",
-        padding: 6,
-        borderRadius: 6,
-        textAlign: "center",
-    },
-    Input: {
-        height: 20,
-        paddingVertical: 15,
-        paddingHorizontal: 10,
-        borderWidth: 1,
-        borderColor: "#ccc",
-        borderStyle: "solid",
-        borderRadius: 6,
-        marginVertical: 10,
-    },
-    Boton: {
-        backgroundColor: "#28a745",
+        backgroundColor:"#e5a342",
         paddingHorizontal: 10,
         paddingVertical: 6,
         textAlign: "center",
         borderRadius: 4,
-        borderWidth: 1,
         borderStyle: "solid",
-        borderColor: "#28a745",
+    },
+    Input: {
+        height: 30,
+         width: 230,
+        paddingVertical: 15,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderColor: "#E5A342",
+        borderStyle: "solid",
+        borderRadius: 6,
+        marginVertical: 10,
+        color:"#F4C569"
+    },
+    Texto: {
+        fontSize: 18,
+        color: "#F4C569",
+        fontFamily: 'Georgia',
+
+    },
+    TextoError:{
+          fontSize: 18,
+        color: "#F4C569",
+        fontFamily: 'Georgia',
+        marginTop: 10,
+
+    },
+
+    Boton: {
+        backgroundColor: "#E5A342",
+        paddingHorizontal: 10,
+        paddingVertical: 6,
+        textAlign: "center",
+        borderRadius: 4,
+        borderStyle: "solid",
+        marginTop: 14
     },
     BotonText: {
-        color: "#fff"
+        fontSize: 18,
+        color: "#64090E",
+        fontFamily: 'Georgia',
     }
+
 },)

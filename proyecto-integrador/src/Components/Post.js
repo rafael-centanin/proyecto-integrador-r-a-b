@@ -12,7 +12,10 @@ function Post(props) {
     const [Likes, setLikes] = useState(props.post.data.likes || [])
     const UsuarioLike = Likes.includes(auth.currentUser.email)
     console.log(props);
-    
+
+    useEffect(() => {
+        setLikes(props.post.data.likes);
+    }, [props.post.data.likes]);
     function darLike() {
         let emailUsuarioYa = auth.currentUser.email
         db.collection('posts')
@@ -53,10 +56,10 @@ function Post(props) {
                         <Text style={styles.BotonText}>Quitar like</Text>
                     </Pressable>
                 }
-            
-            <Pressable onPress={() => props.navigation.navigate('Comments', { id: props.post.id })}>
-                <Text style={styles.BotonText}>Comentar</Text>
-            </Pressable>
+
+                <Pressable onPress={() => props.navigation.navigate('Comments', { id: props.post.id })}>
+                    <Text style={styles.BotonText}>Comentar</Text>
+                </Pressable>
             </View>
         </View>
     )
@@ -99,10 +102,10 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
     },
     component: {
-        flexDirection: 'row', 
+        flexDirection: 'row',
         alignItems: 'center', gap: 10
     },
-    texto:{
+    texto: {
         fontFamily: 'Georgia',
         fontSize: 16,
     }
