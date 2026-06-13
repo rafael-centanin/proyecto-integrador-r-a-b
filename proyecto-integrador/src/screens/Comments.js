@@ -18,7 +18,7 @@ function Comments(props) {
             }
         })
         return comentario
-    }, [postId]) //Antes se nos rompia lol, aca cambia el comentario cuando se entre a otro
+    }, [postId])
 
     function actualizarDatos() {
         db.collection('posts')
@@ -44,7 +44,7 @@ function Comments(props) {
             <FlatList
                 data={ArrayComentario}
                 keyExtractor={item => item}
-                renderItem={({ item }) => <Text>{item}</Text>}
+                renderItem={({ item }) => <Text style={styles.text}>{item}</Text>}
             />
         </View>
     )
@@ -53,35 +53,61 @@ export default Comments;
 
 const styles = StyleSheet.create({
     h1: {
-        fontSize: 32,
+        textAlign: "center",
+        fontFamily: 'Courier',
+        fontSize: 55,
         fontWeight: 'bold',
-        color: '#000000',
+        color: '#64090E',
         marginVertical: 10,
     },
     container: {
+        paddingHorizontal: 10,
+        backgroundColor: "#F9D694",
+        width: "100%",
         flex: 1,
         alignItems: 'center',
-        marginTop: 40
+        justifyContent: "center"
     },
     Input: {
         height: 20,
-        paddingVertical: 50,
-        paddingHorizontal: 50,
-        borderWidth: 1,
+        paddingVertical: 30,
+        paddingHorizontal: 15,
+        borderWidth: 7,
+        borderColor: "#64090E",
         borderStyle: "solid",
-        marginVertical: 10,
+        borderRadius: 15,
+        marginVertical: 20,
+        marginLeft: 30,
+        color: "#64090E",
+        width: 280,
+    },
+    flatlist: {
+        backgroundColor: "#64090E",
+        width: "100%",
+        flex: 1
     },
     Boton: {
-        backgroundColor: "#28a3a7",
+        backgroundColor: "#64090E",
         paddingHorizontal: 10,
-        paddingVertical: 6,
+        paddingVertical: 10,
         textAlign: "center",
-        borderRadius: 4,
-        borderWidth: 1,
+        borderRadius: 15,
         borderStyle: "solid",
-        borderColor: "#28a3a7",
+        marginLeft: 3,
+        marginTop: 14
     },
     BotonText: {
-        color: "#fff",
+        fontSize: 18,
+        color: "#F9D694",
+        fontFamily: 'Georgia',
+    },
+    posts: {
+        backgroundColor: "#64090E"
+    },
+    text: {
+        color: "#64090E",
+        fontFamily: 'Georgia',
+        fontSize: 16,
+        marginVertical: 5,
     }
 },)
