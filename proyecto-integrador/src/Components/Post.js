@@ -39,9 +39,7 @@ function Post(props) {
                 setLikes(Likes.filter(MailUsers => MailUsers !== emailUsuarioYa))
             })
     }
-    // function irCommets(props) {
-    //         props.navigation.navigate('Comments');
-    // }
+
 
     return (
         <View style={styles.postContainer}>

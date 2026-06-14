@@ -41,15 +41,19 @@ function Comments(props) {
             <Pressable style={styles.Boton} onPress={() => actualizarDatos()}>
                 <Text style={styles.BotonText}>Comentar</Text>
             </Pressable>
+            <Text style={styles.h3}>Tus comentarios anteriores</Text>
             <FlatList
                 data={ArrayComentario}
                 keyExtractor={item => item}
-                renderItem={({ item }) => <Text style={styles.text}>{item}</Text>}
+                renderItem={({ item }) => (<View style={styles.containerAnt}>
+                    <Text style={styles.text}>{item}</Text>
+                </View>)}
             />
         </View>
     )
 }
 export default Comments;
+//<Text style={styles.text}>{item}</Text>
 
 const styles = StyleSheet.create({
     h1: {
@@ -60,13 +64,30 @@ const styles = StyleSheet.create({
         color: '#64090E',
         marginVertical: 10,
     },
+    h3: {
+        fontFamily: 'Times New Roman',
+        fontSize: 18,
+        fontStyle: 'italic',
+        lineHeight: 26,
+        color: '#64090E',
+        paddingLeft: 15
+    },
     container: {
         paddingHorizontal: 10,
         backgroundColor: "#F9D694",
         width: "100%",
         flex: 1,
         alignItems: 'center',
-        justifyContent: "center"
+        paddingTop: 50,  
+    },
+    containerAnt: {
+        backgroundColor: '#64090E',
+        borderRadius: 15,
+        paddingHorizontal: 15,
+        paddingVertical: 12,
+        marginVertical: 6,
+        width: 280,
+        alignSelf: 'flex-end'
     },
     Input: {
         height: 20,
@@ -84,7 +105,7 @@ const styles = StyleSheet.create({
     flatlist: {
         backgroundColor: "#64090E",
         width: "100%",
-        flex: 1
+        // flex: 1
     },
     Boton: {
         backgroundColor: "#64090E",
@@ -105,7 +126,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#64090E"
     },
     text: {
-        color: "#64090E",
+        color: '#F9D694',
         fontFamily: 'Georgia',
         fontSize: 16,
         marginVertical: 5,
