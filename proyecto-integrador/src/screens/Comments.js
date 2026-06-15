@@ -46,10 +46,10 @@ function Comments(props) {
 
     return (
         <View style={styles.container}>
-            <View>
-                <Text>{Posts.owner}</Text>
-                <Text>{Posts.descripcionPost}</Text>
-                <Text>{likes.length > 0 ? likes.length : "No hay "} Likes</Text>
+            <View style={styles.cajitaOwner}>
+                <Text style={styles.textito}>{Posts.owner}</Text>
+                <Text style={styles.descri}>{Posts.descripcionPost}</Text>
+                <Text style={styles.likes}>{likes.length > 0 ? likes.length : "No hay "} Likes</Text>
             </View>
             <Text style={styles.h2}> Comentarios</Text>
             <TextInput style={styles.Input} placeholder="Comenta!" value={coment} onChangeText={(text) => setComent(text)} />
@@ -62,7 +62,7 @@ function Comments(props) {
                 keyExtractor={item => item}
                 renderItem={({ item }) => (<View style={styles.containerAnt}>
                     <Text style={styles.text}>{item.owner}</Text>
-                    <Text style={styles.text}>{item.texto}</Text>
+                    <Text style={styles.text3}>{item.texto}</Text>
                 </View>)}
             />
         </View>
@@ -95,6 +95,27 @@ const styles = StyleSheet.create({
         color: '#64090E',
         paddingLeft: 15
     },
+    textito:{
+        color: '#e5a342',
+        fontFamily: 'Georgia',
+        fontSize: 16,
+        marginVertical: 5,
+        fontWeight: 'bold',
+    },
+    descri:{
+        color: '#F9D694',
+        fontFamily: 'Georgia',
+        fontSize: 16,
+        marginVertical: 5,
+        // fontWeight: 'bold',
+    },
+    likes:{
+        color: '#F9D694',
+        fontFamily: 'Georgia',
+        fontSize: 16,
+        marginVertical: 5,
+        fontWeight: 'bold',
+    },
     container: {
         paddingHorizontal: 10,
         backgroundColor: "#F9D694",
@@ -102,6 +123,15 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         paddingTop: 50,
+    },
+    cajitaOwner:{
+        backgroundColor: '#64090E',
+        borderRadius: 15,
+        paddingHorizontal: 15,
+        paddingVertical: 12,
+        marginVertical: 6,
+        width: 280,
+        
     },
     containerAnt: {
         backgroundColor: '#64090E',
@@ -149,7 +179,14 @@ const styles = StyleSheet.create({
         backgroundColor: "#64090E"
     },
     text: {
-        color: '#F9D694',
+        color: '#e5a342',
+        fontFamily: 'Georgia',
+        fontSize: 16,
+        marginVertical: 5,
+        fontWeight: 'bold',
+    },
+    text3:{
+        color:"#F9D694" ,
         fontFamily: 'Georgia',
         fontSize: 16,
         marginVertical: 5,
