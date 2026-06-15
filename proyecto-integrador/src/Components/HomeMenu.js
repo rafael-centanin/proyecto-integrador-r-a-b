@@ -8,6 +8,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import Octicons from '@expo/vector-icons/Octicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Comments from "../screens/Comments";
+import StackMenu from "./Stackmenu";
 
 const Tab = createBottomTabNavigator();
 function HomeMenu() {
@@ -22,7 +23,7 @@ function HomeMenu() {
             tabBarActiveTintColor: "#F5C842", //Aca es para que los textos de abajo se vean de otro color 
             tabBarInactiveTintColor: "#D4A0A0"
         }}>
-            <Tab.Screen name="Home" component={Home}
+            <Tab.Screen name="Home" component={StackMenu}
                 options={{
                     tabBarIcon: () => (
                         <Octicons name="home-fill" size={24} color="black" />
@@ -35,12 +36,6 @@ function HomeMenu() {
                     )
                 }} />
             <Tab.Screen name="Profile" component={Profile} options={{ tabBarIcon: () => <Octicons name="person-fill" size={24} color="black" /> }} />
-            <Tab.Screen name="Comments" component={Comments}
-                options={{
-                    tabBarButton: () => null,
-                    tabBarItemStyle: { display: 'none' },
-                }}
-            />
         </Tab.Navigator>
     )
 }
